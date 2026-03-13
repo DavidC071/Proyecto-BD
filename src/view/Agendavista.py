@@ -25,19 +25,19 @@ def pedir_datos():
 
 def pedir_id():
 
-    id = input("Ingrese ID: ")  # pide el ID
-    return id  # retorna el ID
+    id = input("Ingrese ID: ")  
+    return id 
 
 
 def mostrar_contacto(r):
 
     if r:  #si existe registro
-        print("ID:", r[0])  #muestra ID
-        print("Nombre:", r[1])  #muestra nombre
-        print("Apellido:", r[2])  #muestra apellido
-        print("Fecha:", r[3])  #muestra fecha
-        print("Sexo:", r[4])  #muestra sexo
-        print("Telefono:", r[5])  #muestra telefono
+        print("ID:", r[0])  
+        print("Nombre:", r[1])  
+        print("Apellido:", r[2])  
+        print("Fecha:", r[3])  
+        print("Sexo:", r[4])  
+        print("Telefono:", r[5])  
     else:
         print("Contacto no encontrado") 
 
@@ -46,9 +46,9 @@ def mostrar_lista(registros):
 
     for r in registros:  # recorre todos los registros
         print("")
-        print("ID:", r[0])  # muestra ID
-        print("Nombre:", r[1])  # muestra nombre
-        print("Apellido:", r[2])  # muestra apellido
-        print("Telefono:", r[5])  # muestra telefono
+        print("ID:", r[0])  
+        print("Nombre:", r[1])  
+        print("Apellido:", r[2])  
+        print("Telefono:", r[5])  
 
 

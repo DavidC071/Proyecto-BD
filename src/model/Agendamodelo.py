@@ -1,4 +1,4 @@
-archivoDatos = "Persistencia/agenda.agp"  #ruta del archivo donde se guardan los registros
+archivoDatos = "src/Persistencia/agenda.agp"  #ruta del archivo donde se guardan los registros
 
 def guardarRegistro(id, nombre, apellido, fecha, sexo, telefono):
     
@@ -10,7 +10,7 @@ def guardarRegistro(id, nombre, apellido, fecha, sexo, telefono):
 
 def leerRegistros():
 
-    registros = []  #lista donde se guardarán todos los registros
+    registros = []  
 
     try:
         with open(archivoDatos, "r") as archivo:  #abre el archivo en modo lectura
@@ -19,10 +19,10 @@ def leerRegistros():
                 datos = linea.strip().split(";")  #elimina salto de linea y separa los datos por ;
                 registros.append(datos)  #guarda el registro en la lista
 
-    except FileNotFoundError:  #si el archivo no existe
+    except FileNotFoundError:  
         pass  
 
-    return registros  #retorna todos los registros
+    return registros  
 
 
 def buscarRegistro(id_buscar):
@@ -54,4 +54,4 @@ def eliminarRegistros(id_eliminar):
             linea = ";".join(r) + "\n"  #vuelve a crear la linea
             archivo.write(linea)  #escribe el registro
 
-    return eliminado  #retorna si se eliminó o no
+    return eliminado 
