@@ -1,0 +1,97 @@
+Recordatorio cosas del proyecto – (Uso de venv y archivos .bat)
+
+Este proyecto fue desarrollado en Python usando el modelo MVC y utiliza un entorno virtual (venv) para evitar problemas al ejecutarlo en otros computadores.
+
+Venv:
+
+venv es un entorno virtual de Python que permite que el proyecto tenga sus propias dependencias sin afectar el Python del sistema.
+Se usa para que el proyecto pueda ejecutarse en otro computador sin necesidad de instalar manualmente todas las librerías.
+
+Se creo de la siguiente manera:
+
+1. Abrir la terminal en la carpeta del proyecto y ejecutar:
+
+py -m venv venv
+
+Esto crea la carpeta:
+
+venv/
+
+2. Se activa el entorno virtual
+
+En PowerShell o terminal de VS Code:
+
+venv\Scripts\activate
+
+Si se activa correctamente aparece:
+
+(venv)
+
+3. Se crea el Archivo de las dependencias ( es importante)
+
+Con el entorno activado:
+
+pip freeze > requirements.txt
+
+Este archivo guarda las dependencias necesarias para ejecutar el proyecto en otro computador.
+
+(4.Ejecutar el proyecto manualmente)
+
+Activar venv:
+
+venv\Scripts\activate
+
+Ejecutar:
+
+py src/Main.py
+-----------------------------------------------------------------------------------------------
+
+Archivo .bat
+
+Se creó un archivo .bat para ejecutar el proyecto sin escribir comandos.
+
+Ejemplo de ejecutar.bat:
+
+@echo off
+cd /d "%~dp0"
+call venv\Scripts\activate
+py src/Main.py
+pause
+
+El archivo .bat:
+
+* se mueve a la carpeta del proyecto
+* activa el entorno virtual
+* ejecuta el programa
+* mantiene la consola abierta si hay errores
+
+RECORDATRIO IMPORTANTE DE LAS VISTAS TERMINAL/TKINTER
+
+El proyecto tiene dos formas de ejecución:
+
+Agendacontrolador.iniciarTerminal() VISTA POR CONSOLA
+Agendacontrolador.iniciar() → VISTA POR TKINTER
+
+El archivo Main.py decide cuál se ejecuta.
+
+El archivo .bat siempre ejecuta lo que esté definido en Main.py,
+por lo tanto, antes de ejecutar el proyecto se debe verificar cuál
+método está siendo llamado.
+
+
+Como ejecutar en otro computador
+
+1. Abrir la carpeta del proyecto
+2. Ejecutar ejecutar.bat
+
+Si el entorno falla:
+
+py -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+py src/Main.py
+
+NOTA:
+
+Tkinter funciona solo si Python está instalado con soporte de Tk.
+El archivo agenda.agp debe estar en la carpeta Data para conservar los registros.

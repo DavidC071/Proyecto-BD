@@ -1,6 +1,6 @@
 from Controller import Agendacontrolador
 
-Agendacontrolador.iniciarTerminal() # Usa el apartado visual de Tkinter
+Agendacontrolador.iniciar() # Usa el apartado visual de Tkinter
 
 #Para inciar por consola:
 
