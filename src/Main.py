@@ -1,3 +1,7 @@
-from view import Tkintervista
+from Controller import Agendacontrolador
 
-Tkintervista.iniciarVista()
+Agendacontrolador.iniciarTerminal() # Usa el apartado visual de Tkinter
+
+#Para inciar por consola:
+
+#Agendacontrolador.iniciarTerminal()

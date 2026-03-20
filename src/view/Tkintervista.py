@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox   # para mostrar mensajes en pantalla
-from model import Agendamodelo  
+from Controller import Agendacontrolador 
 
 
 # Funcion de la vista principal
@@ -13,17 +13,20 @@ def iniciarVista():
     global entrada_sexo
     global entrada_telefono
     global entrada_id
+    global sexo_var
 
 
-    # Limpia los campos 
+    # Limpia los campos despues de meter unos datos
     def limpiar_campos():
 
         entrada_id.delete(0, tk.END)
         entrada_nombre.delete(0, tk.END)
         entrada_apellido.delete(0, tk.END)
         entrada_fecha.delete(0, tk.END)
-        entrada_sexo.delete(0, tk.END)
+        sexo_var.set("M")
         entrada_telefono.delete(0, tk.END)
+
+
 
 
     # Guarda
@@ -33,7 +36,7 @@ def iniciarVista():
         nombre = entrada_nombre.get()
         apellido = entrada_apellido.get()
         fecha = entrada_fecha.get()
-        sexo = entrada_sexo.get()
+        sexo = sexo_var.get()
         telefono = entrada_telefono.get()
 
         # validar campos vacios
@@ -41,8 +44,8 @@ def iniciarVista():
             messagebox.showwarning("Error", "Faltan datos")
             return
 
-        # llamar al modelo
-        Agendamodelo.guardarRegistro(
+        # llamar al controlador
+        Agendacontrolador.guardar(
             id,
             nombre,
             apellido,
@@ -71,7 +74,7 @@ def iniciarVista():
             )
             return
 
-        r = Agendamodelo.buscarRegistro(id)
+        r = Agendacontrolador.buscar(id)
 
         if r:
 
@@ -84,8 +87,8 @@ def iniciarVista():
             entrada_fecha.delete(0, tk.END)
             entrada_fecha.insert(0, r[3])
 
-            entrada_sexo.delete(0, tk.END)
-            entrada_sexo.insert(0, r[4])
+            sexo_var.set("M")
+            sexo_var.set(r[4])
 
             entrada_telefono.delete(0, tk.END)
             entrada_telefono.insert(0, r[5])
@@ -109,7 +112,7 @@ def iniciarVista():
             )
             return
 
-        eliminado = Agendamodelo.eliminarRegistros(id)
+        eliminado = Agendacontrolador.eliminar(id)
 
         if eliminado:
             messagebox.showinfo(
@@ -127,15 +130,15 @@ def iniciarVista():
     # Funcion Mostrar 
     def mostrar():
 
-        registros = Agendamodelo.leerRegistros()
+        registros = Agendacontrolador.mostrar()
 
         ventana2 = tk.Toplevel()
         ventana2.title("Contactos")
 
         texto = tk.Text(
             ventana2,
-            width=50,
-            height=20
+            width=100,
+            height=40
         )
 
         texto.pack()
@@ -143,9 +146,10 @@ def iniciarVista():
         for r in registros:
 
             linea = (
-                "ID: " + r[0]
-                + " Nombre: " + r[1]
-                + " Apellido: " + r[2]
+                "ID: " + r[0] + ","
+                + " Nombre: " + r[1] + ","
+                + " Apellido: " + r[2] + ","
+                + " Sexo: " + r[4] + "," 
                 + " Tel: " + r[5]
                 + "\n"
             )
@@ -178,7 +182,7 @@ def iniciarVista():
 
     tk.Label(
         ventana,
-        text="Nombre"
+        text="Nombres"
     ).grid(row=1, column=0)
 
     entrada_nombre = tk.Entry(ventana)
@@ -187,7 +191,7 @@ def iniciarVista():
 
     tk.Label(
         ventana,
-        text="Apellido"
+        text="Apellidos"
     ).grid(row=2, column=0)
 
     entrada_apellido = tk.Entry(ventana)
@@ -196,7 +200,7 @@ def iniciarVista():
 
     tk.Label(
         ventana,
-        text="Fecha"
+        text="Fecha de Nac"
     ).grid(row=3, column=0)
 
     entrada_fecha = tk.Entry(ventana)
@@ -207,9 +211,21 @@ def iniciarVista():
         ventana,
         text="Sexo"
     ).grid(row=4, column=0)
+    
+    sexo_var = tk.StringVar()
 
-    entrada_sexo = tk.Entry(ventana)
+    sexo_var.set("M")
+    
+    opciones = ["M", "F", "Otro"] #Es para que de las opciones en vez de tener que escribir.
+
+    entrada_sexo = tk.OptionMenu(
+        ventana,
+        sexo_var,
+        *opciones
+    )
+
     entrada_sexo.grid(row=4, column=1)
+
 
 
     tk.Label(

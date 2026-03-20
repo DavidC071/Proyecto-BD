@@ -48,7 +48,8 @@ def mostrar_lista(registros):
         print("")
         print("ID:", r[0])  
         print("Nombre:", r[1])  
-        print("Apellido:", r[2])  
+        print("Apellido:", r[2])
+        print("Sexo:", r[4])
         print("Telefono:", r[5])  
 
 

@@ -1,8 +1,9 @@
 from model import Agendamodelo 
 from view import Agendavista  
+from view import Tkintervista
 
 
-def iniciar ():
+def iniciarTerminal ():
     while True:  
         Agendavista.mostrar_menu()  
         opcion = input("Seleccione opcion: ")  
@@ -35,3 +36,36 @@ def iniciar ():
             break 
         else:
             print("Opcion invalida")  
+
+#Para aplicar MVC con el apartado de Tkinter
+
+def guardar(id, nombre, apellido, fecha, sexo, telefono):
+
+    return Agendamodelo.guardarRegistro(
+        id,
+        nombre,
+        apellido,
+        fecha,
+        sexo,
+        telefono
+    )
+
+
+def buscar(id):
+
+    return Agendamodelo.buscarRegistro(id)
+
+
+def eliminar(id):
+
+    return Agendamodelo.eliminarRegistros(id)
+
+
+def mostrar():
+
+    return Agendamodelo.leerRegistros()
+
+#Inciar con Tkinter
+def iniciar():
+    Tkintervista.iniciarVista()
+ 
